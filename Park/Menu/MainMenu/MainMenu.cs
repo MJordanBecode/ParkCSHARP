@@ -46,7 +46,7 @@ public class MainMenu
                 break;
             case "Add on grid":
                 // Appeler une méthode pour ajouter sur la grille
-                // AddOnGrid();
+                Gridpark.ShowGrid();
                 break;
             case "Remove on grid":
                 // Appeler une méthode pour retirer de la grille
