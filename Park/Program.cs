@@ -1,4 +1,5 @@
 ﻿using Park;
+using Park.spectre;
 
 namespace Park
 {
@@ -6,7 +7,7 @@ namespace Park
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Header.Show(); // Header of the program
         }
     }
 }
