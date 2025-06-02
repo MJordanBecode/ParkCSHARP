@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using Park.Menu.MainMenu;
+using Spectre.Console;
 
 namespace Park.spectre;
 
@@ -20,8 +21,11 @@ public class MultiSelection
             "Chamboule Tout", "Grande Roue", "HighStriker",
             "Machine à Piece","Manege Gyroscopique","Mongol Fière",
             "Montagnes Russes","Pedalo Cygne","StandTir",
-            "Tasses Tournantes","Test De Force","Train Mignature"
+            "Tasses Tournantes","Test De Force","Train Mignature",
+            "Return to Main Menu", "Exit"
         }));
+            
+        
         if (coasterChoice.Count == 0)
         {
             throw new Exception("No coaster selected");
@@ -31,6 +35,28 @@ public class MultiSelection
             // Display the selected choices
             AnsiConsole.MarkupLine($"You selected: [green]{string.Join(", ", coasterChoice)}[/]");
             // Visitor.ShowNumberOfVisitor()
+        }
+        // Display the selected choices
+        foreach (var choice in coasterChoice)
+        {
+            switch (choice)
+            {
+                case "Return to Main Menu":
+                    // Clear the terminal
+                    Console.Clear();
+
+                    // Call to the Main Menu
+                    MainMenu.Show();
+
+                    break; // 
+
+                case "Exit":
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         ReturnMainMenu.ReturnMainmenu();

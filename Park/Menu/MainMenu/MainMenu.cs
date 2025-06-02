@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Park.spectre;
 namespace Park.Menu.MainMenu;
 
 public class MainMenu
@@ -23,5 +24,38 @@ public class MainMenu
 
 
         AnsiConsole.MarkupLine($"[white]You have chosen [red]{choice}[/].[/]");
+
+        switch (choice)
+        {
+            case "Statistics":
+                // Appeler une méthode pour afficher les statistiques
+                // DisplayStatistics();
+                break;
+            case "Show my park":
+                // Appeler une méthode pour montrer le parc
+                // ShowPark();
+                break;
+            case "See my inventory":
+                // Appeler une méthode pour voir l'inventaire
+                // SeeInventory();
+                break;
+            case "Buy a new coaster":
+                // Appeler une méthode pour acheter un nouveau coaster
+                MultiSelection.Show(); // Assuming this method handles the coaster selection
+                // BuyNewCoaster();
+                break;
+            case "Add on grid":
+                // Appeler une méthode pour ajouter sur la grille
+                // AddOnGrid();
+                break;
+            case "Remove on grid":
+                // Appeler une méthode pour retirer de la grille
+                // RemoveFromGrid();
+                break;
+            case "Exit":
+                // Sortir de l'application ou retourner au menu précédent
+                // ExitApplication();
+                break;
+        }
     }
 }
