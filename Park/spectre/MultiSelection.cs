@@ -5,8 +5,25 @@ namespace Park.spectre;
 
 public class MultiSelection
 {
+    private int _i;
+    public int i {get => _i; set => _i = value;} 
+    
     public static void Show()
     {
+        int i = 0;
+        int max = 2;
+        
+        List<String> coasterChoiceName = new List<String>
+        {
+            $"Auto Tamponeuse [red]{i}[/] / {max}",$"Bateau à Bascule", $"Bateau Tamponneur",
+            "Bowling", "Carrousel", "Chaises Volantes",
+            "Chamboule Tout", "Grande Roue", "HighStriker",
+            "Machine à Piece","Manege Gyroscopique","Mongol Fière",
+            "Montagnes Russes","Pedalo Cygne","StandTir",
+            "Tasses Tournantes","Test De Force","Train Mignature",
+            "Return to Main Menu", "Exit"
+        };
+        
         var coasterChoice = AnsiConsole.Prompt(
         new MultiSelectionPrompt<string>()
             .Title("Which [green]Coaster(s)[/] would you like to buy ?")
@@ -15,15 +32,7 @@ public class MultiSelection
             .MoreChoicesText("[blue](Move up and down to reveal more choices)[/]")
             .InstructionsText("[grey](Press [blue]<space>[/] to toggle a choicesSelection, " + 
                               "[green]<enter>[/] to accept)[/]")
-             .AddChoices(new[] {
-            "Auto Tamponeuse", "Bateau à Bascule", "Bateau Tamponneur",
-            "Bowling", "Carrousel", "Chaises Volantes",
-            "Chamboule Tout", "Grande Roue", "HighStriker",
-            "Machine à Piece","Manege Gyroscopique","Mongol Fière",
-            "Montagnes Russes","Pedalo Cygne","StandTir",
-            "Tasses Tournantes","Test De Force","Train Mignature",
-            "Return to Main Menu", "Exit"
-        }));
+             .AddChoices(coasterChoiceName));
             
         
         if (coasterChoice.Count == 0)
@@ -41,6 +50,10 @@ public class MultiSelection
         {
             switch (choice)
             {
+                case "Auto Tamponeuse":
+                    break;
+                
+                
                 case "Return to Main Menu":
                     // Clear the terminal
                     Console.Clear();
