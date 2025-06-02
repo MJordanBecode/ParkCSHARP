@@ -17,7 +17,7 @@ public class ReturnMainMenu
             if (key.Key == ConsoleKey.D1)
             {
                 Console.Clear();
-                MultiSelection.Show();
+                MainMenu();
                 Thread.Sleep(1000);
                 AnsiConsole.MarkupLine("Terminé. Appuyez sur une touche pour revenir.");
 
