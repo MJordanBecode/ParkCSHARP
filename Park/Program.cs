@@ -8,6 +8,8 @@ namespace Park
         public static void Main(string[] args)
         {
             Header.Show(); // Header of the program
+            
+            MultiSelection.Show(); // Menu of the program
         }
     }
 }

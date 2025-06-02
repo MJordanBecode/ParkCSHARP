@@ -1,0 +1,50 @@
+﻿# Fichiers binaires générés
+bin/
+obj/
+
+Park/bin/
+Park/obj/
+
+TestPark/bin/
+TestPark/obj/
+
+
+# Fichiers de configuration utilisateur Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Dossiers cachés VS
+.vs/
+
+# Packages NuGet
+*.nupkg
+packages/
+
+# Logs
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.temp
+
+# JetBrains Rider
+.idea/
+
+# Fichiers générés par le système
+*.DS_Store
+Thumbs.db
+
+# Fichiers de build (autres)
+*.ilk
+*.meta
+*.pdb
+*.exe
+*.dll
+
+# Visual Studio Code
+.vscode/
+
+# Fichiers secrets ou de configuration locale
+appsettings.Local.json
