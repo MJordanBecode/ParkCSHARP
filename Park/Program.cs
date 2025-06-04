@@ -6,18 +6,24 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Park.Menu.MainMenu;
+using Park.utils;
+using Park.DB;
 using Microsoft.Data.Sqlite;
 
 namespace Park
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args) //si async, devoir mettre " Task " à la place de void
         {
             
-            Header.Show(); // Header of the program
+            // Header.Show(); // Header of the program
+            // MainMenu.Show(); // Main menu of the program
             
-            MainMenu.Show(); // Main menu of the program
+             string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
+                    DatabaseManager db = new DatabaseManager(dbPath);
+                    db.Connect();
+                    db.LireAttractions();
             
         }
     }
