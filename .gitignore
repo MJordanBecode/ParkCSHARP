@@ -6,7 +6,7 @@ Park/bin/
 Park/obj/
 
 TestPark/bin/
-TestPark/obj/
+TestPark/obj/TestPark.*
 
 
 # Fichiers de configuration utilisateur Visual Studio
