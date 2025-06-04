@@ -1,5 +1,6 @@
-﻿using Park.Menu.MainMenu;
+﻿using Park.Menu.MainMenus;
 using Spectre.Console;
+using Park.spectre;
 
 namespace Park.spectre;
 
@@ -29,6 +30,7 @@ public class MultiSelection
             .Title("Which [green]Coaster(s)[/] would you like to buy ?")
             .NotRequired()
             .PageSize(8)
+            .HighlightStyle(new Style(foreground: Color.Green1))
             .MoreChoicesText("[blue](Move up and down to reveal more choices)[/]")
             .InstructionsText("[grey](Press [blue]<space>[/] to toggle a choicesSelection, " + 
                               "[green]<enter>[/] to accept)[/]")

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Park.spectre;
-namespace Park.Menu.MainMenu;
+namespace Park.spectre;
 
 public class SelectionAddOnGrid
 {

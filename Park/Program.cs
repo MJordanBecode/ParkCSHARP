@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Park.Menu.MainMenu;
+using Park.Menu.MainMenus;
 using Microsoft.Data.Sqlite;
+using Park.Menu;
+
 
 namespace Park
 {
@@ -15,10 +17,10 @@ namespace Park
         public static void Main(string[] args)
         {
 
-
-            // Header.Show(); // Header of the program
-            //
-            // MainMenu.Show(); // Main menu of the program
+             StartMenu.Show(); // Start menu of the program
+             //Header.Show(); // Header of the program
+            
+             //MainMenu.Show(); // Main menu of the program
 
             
         }
