@@ -14,12 +14,10 @@ namespace Park
     {
         public static void Main(string[] args)
         {
-
-
-            // Header.Show(); // Header of the program
-            //
-            // MainMenu.Show(); // Main menu of the program
-
+            
+            Header.Show(); // Header of the program
+            
+            MainMenu.Show(); // Main menu of the program
             
         }
     }
