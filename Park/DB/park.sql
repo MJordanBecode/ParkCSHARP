@@ -17,6 +17,21 @@ CREATE TABLE attraction (
                             FOREIGN KEY (attraction_price) REFERENCES price(attraction_price)
 );
 
+CREATE TABLE grid (
+                            id_item INTEGER PRIMARY KEY,
+                            position_x INTEGER NOT NULL,
+                            position_y INTEGER NOT NULL,
+                            FOREIGN KEY (id_item) REFERENCES inventaire(id_item),
+                            UNIQUE(position_x, position_y)  -- Une seule attraction par case
+);
+
+CREATE TABLE inventaire (
+                            id_item INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id_attraction VARCHAR(50) NOT NULL,
+                            quantity INTEGER NOT NULL DEFAULT 1,
+                            FOREIGN KEY (id_attraction) REFERENCES attraction(id_attraction)
+);
+
 CREATE TABLE shop (
                       id_attraction VARCHAR(50) PRIMARY KEY,
                       counter_attraction INTEGER NOT NULL DEFAULT 0,
