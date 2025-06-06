@@ -23,8 +23,8 @@ namespace Park
              string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
                     DatabaseManager db = new DatabaseManager(dbPath);
                     db.Connect();
-                    db.LireAttractions();
-            
+                    // db.LireAttractions();
+                    db.SearchOneAttraction("Auto Tamponeuse");
         }
     }
 }

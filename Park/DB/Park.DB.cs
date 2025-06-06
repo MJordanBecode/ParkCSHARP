@@ -53,6 +53,37 @@ namespace Park.DB
               }
           }
       }
+      
+       public void SearchOneAttraction(string attraction_name)
+       {
+           using (var connection = new SqliteConnection(_connectionString))
+           {
+               connection.Open();
+       
+               var command = connection.CreateCommand();
+               command.CommandText = "SELECT * FROM attraction WHERE name_attraction = @name";
+               command.Parameters.AddWithValue("@name", $"{attraction_name}");
+       
+               using (var reader = command.ExecuteReader())
+               {
+                   if (reader.Read())
+                   {
+                       // Lecture de toutes les colonnes
+                       int id = reader.GetInt32(0);
+                       string name = reader.GetString(1);
+                       string level = reader.GetString(2);
+                       string happiness = reader.GetString(3);
+                       double price = reader.GetDouble(4);
+       
+                       Console.WriteLine($"Attraction trouvée : ID={id}, Nom={name}, Niveau={level}, Joie={happiness}, Prix={price}€");
+                   }
+                   else
+                   {
+                       Console.WriteLine("Attraction non trouvée.");
+                   }
+               }
+           }
+       }
 
  } 
 }
