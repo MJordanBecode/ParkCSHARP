@@ -21,14 +21,7 @@ namespace Park
         {
 
              StartMenu.Show(); // Start menu of the program
-             //Header.Show(); // Header of the program
-            
-             //MainMenu.Show(); // Main menu of the program
-
-            
-            // Header.Show(); // Header of the program
-            // MainMenu.Show(); // Main menu of the program
-            
+             
              string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
                     DatabaseManager db = new DatabaseManager(dbPath);
                     db.Connect();
