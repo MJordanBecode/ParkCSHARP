@@ -35,7 +35,7 @@ namespace Park.DB
               connection.Open();
       
               var command = connection.CreateCommand();
-              command.CommandText = "SELECT name_attraction FROM attraction";
+              command.CommandText = "SELECT * FROM attraction";
       
               using (var reader = command.ExecuteReader())
               {
@@ -43,8 +43,12 @@ namespace Park.DB
       
                   while (reader.Read())
                   {
-                      string name_attraction = reader.GetString(0); // Index corrigé ici
-                      Console.WriteLine($"Attraction : {name_attraction}");
+                      string id_attraction = reader.GetString(0); // Index corrigé ici
+                      string name_attraction = reader.GetString(1); // Index corrigé ici
+                      string level_attraction = reader.GetString(2); // Index corrigé ici
+                      string happiness = reader.GetString(3); // Index corrigé ici
+                      string attraction_price = reader.GetString(4); // Index corrigé ici
+                      Console.WriteLine($"Attraction : {id_attraction} -   {name_attraction} - lvl : {level_attraction} - {happiness}😍 - {attraction_price} 💲");
                   }
               }
           }
