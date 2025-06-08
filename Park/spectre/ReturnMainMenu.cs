@@ -1,5 +1,6 @@
-﻿using Park.Menu.MainMenu;
+﻿using Park.Menu.MainMenus;
 using Spectre.Console;
+using Park.spectre;
 namespace Park.spectre;
 
 public class ReturnMainMenu
@@ -11,9 +12,11 @@ public class ReturnMainMenu
 
         // Attend une touche (n'importe laquelle)
         Console.ReadKey(true);
+
         
         // Efface l'écran ou effectue une action
         Console.Clear();
+
         
         // Ici, tu peux rappeler ton menu principal, par exemple :
         MainMenu.Show(); 

@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Park.spectre;
-namespace Park.Menu.MainMenu;
+
+namespace Park.Menu.MainMenus;
 
 public class MainMenu
 {
