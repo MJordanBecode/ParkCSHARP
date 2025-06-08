@@ -14,19 +14,13 @@ public class MultiSelection
     {
         int i = 0;
         int max = 2;
+
+         string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
+         DatabaseManager dbManager = new DatabaseManager(dbPath);
+         List<Attraction> attractions = dbManager.LireAttractions();
         
-        DB.
-        
-        // List<String> coasterChoiceName = new List<String>
-        // {
-        //     $"Auto Tamponeuse [red]{i}[/] / {max}",$"Bateau à Bascule", $"Bateau Tamponneur",
-        //     "Bowling", "Carrousel", "Chaises Volantes",
-        //     "Chamboule Tout", "Grande Roue", "HighStriker",
-        //     "Machine à Piece","Manege Gyroscopique","Mongol Fière",
-        //     "Montagnes Russes","Pedalo Cygne","StandTir",
-        //     "Tasses Tournantes","Test De Force","Train Mignature",
-        //     "Return to Main Menu", "Exit"
-        // };
+        List<string> coasterChoiceName = attractions.Select(a => a.Name_attraction).ToList();
+
         
         var coasterChoice = AnsiConsole.Prompt(
         new MultiSelectionPrompt<string>()
