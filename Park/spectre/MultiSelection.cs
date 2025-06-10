@@ -7,6 +7,7 @@ namespace Park.spectre;
 
 public class MultiSelection
 {
+    
     private int _i;
     public int i {get => _i; set => _i = value;} 
     
@@ -14,17 +15,22 @@ public class MultiSelection
     {
         int i = 0;
         int max = 2;
+
+         string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
+         DatabaseManager dbManager = new DatabaseManager(dbPath);
+         List<Attraction> attractions = dbManager.LireAttractions();
         
-        List<String> coasterChoiceName = new List<String>
-        {
-            $"Auto Tamponeuse [red]{i}[/] / {max}",$"Bateau à Bascule", $"Bateau Tamponneur",
-            "Bowling", "Carrousel", "Chaises Volantes",
-            "Chamboule Tout", "Grande Roue", "HighStriker",
-            "Machine à Piece","Manege Gyroscopique","Mongol Fière",
-            "Montagnes Russes","Pedalo Cygne","StandTir",
-            "Tasses Tournantes","Test De Force","Train Mignature",
-            "Return to Main Menu", "Exit"
-        };
+        List<string> coasterChoiceName = attractions
+            .Select(a => 
+                $"🎢  {a.Name_attraction}\n" +
+                $"   🧩  Niveau      : {a.Level_attraction}\n" +
+                $"   😊  Bonheur     : {a.Happiness_attraction}\n" +
+                $"   💰  Prix        : {a.Price_attraction} 💲")
+            .Append("🔙 Retour au menu principal")
+            .Append("❌ Quitter")
+            .ToList();
+
+
         
         var coasterChoice = AnsiConsole.Prompt(
         new MultiSelectionPrompt<string>()
@@ -45,7 +51,19 @@ public class MultiSelection
         else
         {
             // Display the selected choices
-            AnsiConsole.MarkupLine($"You selected: [green]{string.Join(", ", coasterChoice)}[/]");
+            AnsiConsole.MarkupLine("[bold yellow]🎟️  Vous avez sélectionné les attractions suivantes :[/]\n");
+            
+            int index = 1;
+            foreach (var choice in coasterChoice)
+            {
+                AnsiConsole.MarkupLine($"[green]{index}.[/] {choice}");
+                index++;
+            }
+            
+            AnsiConsole.MarkupLine("\n[italic grey]Merci pour votre sélection ![/]\n");
+
+            
+            //Faire la logique de la bank ici, soit envoyer les données directement 
             // Visitor.ShowNumberOfVisitor()
         }
         // Display the selected choices
@@ -53,9 +71,6 @@ public class MultiSelection
         {
             switch (choice)
             {
-                case "Auto Tamponeuse":
-                    break;
-                
                 
                 case "Return to Main Menu":
                     // Clear the terminal

@@ -1,8 +1,17 @@
 using System;
+using System.Numerics;
 using Microsoft.Data.Sqlite;
 
 namespace Park.DB
 {
+    public class Attraction
+    {
+        public string Id_attraction { get; set; }
+        public string Name_attraction { get; set; }
+        public string Level_attraction { get; set; }
+        public string Happiness_attraction { get; set; }
+        public string Price_attraction { get; set; }
+    }
    public class DatabaseManager
    {
        private string _connectionString;
@@ -28,8 +37,10 @@ namespace Park.DB
            }
        }
        
-      public void LireAttractions()
+      public List<Attraction> LireAttractions()
       {
+          var attractions = new List<Attraction>();
+      
           using (var connection = new SqliteConnection(_connectionString))
           {
               connection.Open();
@@ -39,20 +50,31 @@ namespace Park.DB
       
               using (var reader = command.ExecuteReader())
               {
-                  Console.WriteLine("Liste des attractions :");
-      
                   while (reader.Read())
                   {
-                      string id_attraction = reader.GetString(0); // Index corrigé ici
-                      string name_attraction = reader.GetString(1); // Index corrigé ici
-                      string level_attraction = reader.GetString(2); // Index corrigé ici
-                      string happiness = reader.GetString(3); // Index corrigé ici
-                      string attraction_price = reader.GetString(4); // Index corrigé ici
-                      Console.WriteLine($"Attraction : {id_attraction} -   {name_attraction} - lvl : {level_attraction} - {happiness}😍 - {attraction_price} 💲");
+                      var attraction = new Attraction
+                      {
+                          Id_attraction = reader.GetString(0),
+                          Name_attraction = reader.GetString(1),
+                          Level_attraction = reader.GetString(2),
+                          Happiness_attraction = reader.GetString(3),
+                          Price_attraction = reader.GetString(4)
+                      };
+      
+                      attractions.Add(attraction);
                   }
               }
           }
+      
+          // // ✅ Affichage une seule fois après la lecture
+          // foreach (var attraction in attractions)
+          // {
+          //     Console.WriteLine($"Attraction : {attraction.Id_attraction} - {attraction.Name_attraction} - lvl : {attraction.Level_attraction} - {attraction.Happiness_attraction} - {attraction.Price_attraction} ");
+          // }
+      
+          return attractions;
       }
+
       
        public void SearchOneAttraction(string attraction_name)
        {
@@ -75,7 +97,7 @@ namespace Park.DB
                        string happiness = reader.GetString(3);
                        double price = reader.GetDouble(4);
        
-                       Console.WriteLine($"Attraction trouvée : ID={id}, Nom={name}, Niveau={level}, Joie={happiness}, Prix={price}€");
+                       // Console.WriteLine($"Attraction trouvée : ID={id}, Nom={name}, Niveau={level}, Joie={happiness}, Prix={price}€");
                    }
                    else
                    {
@@ -84,6 +106,37 @@ namespace Park.DB
                }
            }
        }
+       
+       
+              public void DisplayBank()
+              {
+                  int safeBank = 0;
+                  using (var connection = new SqliteConnection(_connectionString))
+                  {
+                      connection.Open();
+              
+                      var command = connection.CreateCommand();
+                      command.CommandText = "SELECT capital FROM bank";
+                      
+              
+                      using (var reader = command.ExecuteReader())
+                      {
+                          if (reader.Read())
+                          {
+                              
+                              // lecture de la colonne capital
+                              safeBank = reader.GetInt32(0);
+                             
+              
+                              // Console.WriteLine($" Capital= {safeBank} €");
+                          }
+                          else
+                          {
+                              Console.WriteLine("Error 505");
+                          }
+                      }
+                  }
+              }
 
  } 
 }

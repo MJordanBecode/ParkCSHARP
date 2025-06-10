@@ -18,14 +18,15 @@ namespace Park
     {
         public static void Main(string[] args) //si async, devoir mettre " Task " à la place de void
         {
-
+            
              StartMenu.Show(); // Start menu of the program
              
              string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
                     DatabaseManager db = new DatabaseManager(dbPath);
                     db.Connect();
+                    db.DisplayBank();
                     // db.LireAttractions();
-                    db.SearchOneAttraction("Auto Tamponeuse");
+                    // db.SearchOneAttraction("Auto Tamponeuse");
         }
     }
 }
