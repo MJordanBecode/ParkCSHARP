@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Park.Menu.MainMenus;
-using Park.Menu.MainMenu;
 using Park.utils;
 using Park.DB;
 using Microsoft.Data.Sqlite;
