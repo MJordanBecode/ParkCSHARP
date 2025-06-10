@@ -127,8 +127,7 @@ namespace Park.DB
                               // lecture de la colonne capital
                               safeBank = reader.GetInt32(0);
                              
-              
-                              // Console.WriteLine($" Capital= {safeBank} €");
+
                           }
                           else
                           {
@@ -137,6 +136,35 @@ namespace Park.DB
                       }
                   }
               }
+
+                            public void DataBank()
+                            {
+                                int safeBank = 0;
+                                using (var connection = new SqliteConnection(_connectionString))
+                                {
+                                    connection.Open();
+
+                                    var command = connection.CreateCommand();
+                                    command.CommandText = "SELECT capital FROM bank";
+
+
+                                    using (var reader = command.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+
+                                            // lecture de la colonne capital
+                                            safeBank = reader.GetInt32(0);
+
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Error 505");
+                                        }
+                                    }
+                                }
+                            }
 
  } 
 }
