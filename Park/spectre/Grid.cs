@@ -1,39 +1,80 @@
 ﻿using Spectre.Console;
-namespace Park.spectre;
+using System;
+using System.Collections.Generic;
+using Spectre.Console;
 
-public class Gridpark
+namespace Park.spectre
 {
-    public static void ShowGrid()
+    public class Gridpark
     {
-        var table = new Table();
+        // Grille pour stocker l'état des cases
+        private static string[,] grid = new string[5, 5];
 
-// Colonne "X/Y"
-        table.AddColumn("X/Y").ShowRowSeparators().Border(TableBorder.Rounded);
-
-// Colonnes 1 à 5
-        for (int i = 0; i < 5; i++)
+        // Initialisation de la grille
+        static Gridpark()
         {
-            table.AddColumn($"{i + 1}").ShowRowSeparators().Border(TableBorder.Rounded);
+            for (int row = 0; row < 5; row++)
+            {
+                for (int col = 0; col < 5; col++)
+                {
+                    grid[row, col] = ":green_square:";
+                }
+            }
         }
 
-// Lignes avec identifiant en 1re colonne
-        for (int row = 1; row <= 5; row++) // de 1 à 5
+        // Affichage de la grille
+        public static void ShowGrid()
         {
-            var cells = new List<string>();
+            var table = new Table();
 
-            // Première colonne : numéro de ligne
-            cells.Add(row.ToString());
+            // Ajout de la première colonne
+            table.AddColumn("X/Y").ShowRowSeparators().Border(TableBorder.Rounded);
 
-            // 5 colonnes restantes : carrés verts
-            for (int col = 0; col < 5; col++)
+            // Ajout des colonnes supplémentaires
+            for (int i = 0; i < 5; i++)
             {
-                cells.Add(":green_square:");
+                table.AddColumn($"{i + 1}").ShowRowSeparators().Border(TableBorder.Rounded);
             }
 
-            table.AddRow(cells.ToArray()).ShowRowSeparators().Border(TableBorder.Rounded);
+            // Ajout des lignes à la table
+            for (int row = 0; row < 5; row++)
+            {
+                var cells = new List<string> { (row + 1).ToString() };
+
+                for (int col = 0; col < 5; col++)
+                {
+                    cells.Add(grid[row, col]);
+                }
+
+                table.AddRow(cells.ToArray()).ShowRowSeparators().Border(TableBorder.Rounded);
+            }
+
+            // Affichage de la table
+            AnsiConsole.Write(table);
         }
 
-// Affichage dans le terminal
-        AnsiConsole.Write(table);
+        // Récupération du contenu d'une case
+        public static string GetCellContent(int x, int y)
+        {
+            // Vérification des limites
+            if (x < 1 || x > 5 || y < 1 || y > 5)
+            {
+                throw new ArgumentOutOfRangeException("Coordonnées invalides.");
+            }
+
+            return grid[x - 1, y - 1];
+        }
+
+        // Mise à jour du contenu d'une case
+        public static void SetCellContent(int x, int y, string content)
+        {
+            // Vérification des limites
+            if (x < 1 || x > 5 || y < 1 || y > 5)
+            {
+                throw new ArgumentOutOfRangeException("Coordonnées invalides.");
+            }
+
+            grid[x - 1, y - 1] = content;
+        }
     }
 }
