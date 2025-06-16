@@ -18,13 +18,21 @@ namespace Park
     {
         public static void Main(string[] args) //si async, devoir mettre " Task " à la place de void
         {
-            
-             StartMenu.Show(); // Start menu of the program
+            // Faire en sorte de mettre async tout le code ! chaque get, post etc 
+              StartMenu.Show(); // Start menu of the program
              
              string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
                     DatabaseManager db = new DatabaseManager(dbPath);
                     db.Connect();
-                    db.DisplayBank();
+                    // db.DisplayBank(); => display l'argent 
+                    Console.WriteLine("Gestion de l'argent ici : ");
+                    Money money = new Money();
+                    Console.WriteLine("Argent de base :");
+                    db.DisplayBank(); 
+                    Console.WriteLine("Capital après retrait :  ");
+                    Console.WriteLine(money.decreaseMoney(509));
+                    // Console.WriteLine("Capital après ajout :  ");
+                    // Console.WriteLine(money.increaseMoney(5000));
                     // db.LireAttractions();
                     // db.SearchOneAttraction("Auto Tamponeuse");
         }

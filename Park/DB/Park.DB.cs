@@ -127,8 +127,7 @@ namespace Park.DB
                               // lecture de la colonne capital
                               safeBank = reader.GetInt32(0);
                              
-              
-                              // Console.WriteLine($" Capital= {safeBank} €");
+
                           }
                           else
                           {
@@ -137,6 +136,94 @@ namespace Park.DB
                       }
                   }
               }
+
+                            public int GetDataBank()
+                            {
+                                int safeBank = 0;
+                                using (var connection = new SqliteConnection(_connectionString))
+                                {
+                                    connection.Open();
+
+                                    var command = connection.CreateCommand();
+                                    command.CommandText = "SELECT capital FROM bank";
+
+
+                                    using (var reader = command.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+
+                                            // lecture de la colonne capital
+                                            safeBank = reader.GetInt32(0);
+
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Error 505");
+                                        }
+                                    }
+                                }
+
+                                return safeBank;
+                            }
+
+                            public void UpdateDataBank(int newCapital)
+                            {
+                                using (var connection = new SqliteConnection(_connectionString))
+                                {
+                                    connection.Open();
+                                    var command = connection.CreateCommand();
+                                    command.CommandText = "UPDATE bank SET capital = @capital";
+        
+                                    // Paramètre pour éviter l'injection SQL
+                                    command.Parameters.AddWithValue("@capital", newCapital);
+        
+                                    int rowsAffected = command.ExecuteNonQuery();
+        
+                                    if (rowsAffected == 0)
+                                    {
+                                        Console.WriteLine("Error: Aucune ligne mise à jour");
+                                    }
+                                }
+                            }
+
+                            public void updateInventory(string id_attraction)
+                            {
+                                int quantity = 1; // Always inserting with a quantity of 1 for a new entry
+
+                                using (var connection = new SqliteConnection(_connectionString))
+                                {
+                                    try
+                                    {
+                                        connection.Open();
+                                        var command = connection.CreateCommand();
+
+                                        // Corrected INSERT statement: specify columns and remove trailing parenthesis
+                                        command.CommandText = "INSERT INTO inventaire (id_attraction, quantity) VALUES (@id_attraction, @quantity);";
+                                        command.Parameters.AddWithValue("@id_attraction", id_attraction);
+                                        command.Parameters.AddWithValue("@quantity", quantity);
+
+                                        int rowsAffected = command.ExecuteNonQuery();
+
+                                        if (rowsAffected > 0)
+                                        {
+                                            Console.WriteLine($"added to inventory.[/]");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"not add to inventory.[/]");
+                                        }
+                                    }
+                                    catch (SqliteException ex)
+                                    {
+                                        // This catch block is important if id_attraction could be unique,
+                                        // or if you hit other database constraints.
+                                        Console.WriteLine($"[red]Error adding '{id_attraction}' to inventory: {ex.Message}[/]");
+                                        // You might want to log the full exception or handle specific error codes
+                                    }
+                                }
+                            }
 
  } 
 }
