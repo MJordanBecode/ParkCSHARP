@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Park.Menu.showInventory;
+using Park.DB;
 using Park.spectre;
 
 namespace Park.Menu.MainMenus;
@@ -33,12 +35,13 @@ public class MainMenu
                 // DisplayStatistics();
                 break;
             case "Show my park":
-                // Appeler une méthode pour montrer le parc
-                // ShowPark();
+                Gridpark.Initialize(10, 10);  // ou la taille de ta grille réelle
+                Gridpark.ShowGrid();
                 break;
             case "See my inventory":
                 // Appeler une méthode pour voir l'inventaire
-                // SeeInventory();
+                ShowInventory displayInventory = new ShowInventory();
+                displayInventory.DisplayInventory();
                 break;
             case "Buy a new coaster":
                 // Appeler une méthode pour acheter un nouveau coaster
@@ -46,8 +49,7 @@ public class MainMenu
                 // BuyNewCoaster();
                 break;
             case "Add on grid":
-                // Appeler une méthode pour ajouter sur la grille
-                Gridpark.ShowGrid();
+
                 break;
             case "Remove on grid":
                 // Appeler une méthode pour retirer de la grille

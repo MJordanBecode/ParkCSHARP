@@ -23,18 +23,8 @@ namespace Park
              
              string dbPath = "./DB/park.sqlite"; // ou le chemin vers ta base
                     DatabaseManager db = new DatabaseManager(dbPath);
-                    db.Connect();
-                    // db.DisplayBank(); => display l'argent 
-                    Console.WriteLine("Gestion de l'argent ici : ");
-                    Money money = new Money();
-                    Console.WriteLine("Argent de base :");
-                    db.DisplayBank(); 
-                    //Console.WriteLine("Capital après retrait :  ");
-                    //Console.WriteLine(money.decreaseMoney(509));
-                    // Console.WriteLine("Capital après ajout :  ");
-                    // Console.WriteLine(money.increaseMoney(5000));
-                    // db.LireAttractions();
-                    // db.SearchOneAttraction("Auto Tamponeuse");
+                    // db.Connect();
+
         }
     }
 }

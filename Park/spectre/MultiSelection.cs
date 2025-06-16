@@ -56,6 +56,7 @@ public class MultiSelection
             int totalCost = 0;
             int index = 1;
             string id_attraction = "";
+            List<string> safe_id_attraction = new List<string>();
             foreach (var choice in coasterChoice)
             {
                 // Check if the choice is an actual attraction
@@ -67,7 +68,7 @@ public class MultiSelection
                     if (int.TryParse(selectedAttraction.Price_attraction, NumberStyles.Any, CultureInfo.InvariantCulture, out int attractionPrice))
                     {
                         totalCost += attractionPrice; // Add the parsed integer price to the total
-                        id_attraction = selectedAttraction.Id_attraction;
+                        safe_id_attraction.Add(selectedAttraction.Id_attraction); 
                         Console.WriteLine("l'id de l'attraction : "+id_attraction);
                     }
                     else
@@ -81,14 +82,30 @@ public class MultiSelection
             }
 
             AnsiConsole.MarkupLine($"\n[bold yellow]Coût total de votre sélection : {totalCost} 💲[/]\n attraction_id = {id_attraction}");
+            foreach (var id in safe_id_attraction)
+            {
+                Console.WriteLine(id);
+            }
             
             
             AnsiConsole.MarkupLine("[italic grey]Merci pour votre sélection ![/]\n");
 
             Money money = new Money();
-            money.decreaseMoney(totalCost); // This should now correctly accept an int
-            dbManager.updateInventory(id_attraction); //insertion du manège dans l'inventaire
-        }
+            try
+            {
+                foreach (var id in safe_id_attraction)
+                {
+                    dbManager.updateInventory(id); // peut lever une exception si l'id existe déjà
+                }
+            
+                money.decreaseMoney(totalCost); // ne sera appelé que si toutes les insertions ont réussi
+                AnsiConsole.MarkupLine("[green]✅ Paiement effectué avec succès ![/]");
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.MarkupLine($"[red]❌ Une erreur est survenue : {ex.Message}[/]");
+                AnsiConsole.MarkupLine("[yellow]💸 Paiement annulé. Aucun manège n’a été ajouté à l’inventaire.[/]");
+            }
 
         // Handle "Retour au menu principal" and "Quitter" selections
         foreach (var choice in coasterChoice)
@@ -110,4 +127,6 @@ public class MultiSelection
 
         ReturnMainMenu.ReturnMainmenu();
     }
+}
+    
 }
