@@ -29,8 +29,8 @@ namespace Park
                     Money money = new Money();
                     Console.WriteLine("Argent de base :");
                     db.DisplayBank(); 
-                    Console.WriteLine("Capital après retrait :  ");
-                    Console.WriteLine(money.decreaseMoney(509));
+                    //Console.WriteLine("Capital après retrait :  ");
+                    //Console.WriteLine(money.decreaseMoney(509));
                     // Console.WriteLine("Capital après ajout :  ");
                     // Console.WriteLine(money.increaseMoney(5000));
                     // db.LireAttractions();
