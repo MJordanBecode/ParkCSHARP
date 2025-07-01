@@ -805,19 +805,19 @@
     ]
   },
   "packageFolders": {
-    "/home/jordan/.nuget/packages/": {}
+    "/home/jordan-ubuntu/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jordan/Becode/Wozniak/projet/ParkCSHARP/TestPark/TestPark.csproj",
+      "projectUniqueName": "/home/jordan-ubuntu/Becode/Wozniak/Project/ParkCSHARP/TestPark/TestPark.csproj",
       "projectName": "TestPark",
-      "projectPath": "/home/jordan/Becode/Wozniak/projet/ParkCSHARP/TestPark/TestPark.csproj",
-      "packagesPath": "/home/jordan/.nuget/packages/",
-      "outputPath": "/home/jordan/Becode/Wozniak/projet/ParkCSHARP/TestPark/obj/",
+      "projectPath": "/home/jordan-ubuntu/Becode/Wozniak/Project/ParkCSHARP/TestPark/TestPark.csproj",
+      "packagesPath": "/home/jordan-ubuntu/.nuget/packages/",
+      "outputPath": "/home/jordan-ubuntu/Becode/Wozniak/Project/ParkCSHARP/TestPark/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/jordan/.nuget/NuGet/NuGet.Config"
+        "/home/jordan-ubuntu/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -884,7 +884,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/jordan/.dotnet/sdk/9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/jordan-ubuntu/.dotnet/sdk/9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
